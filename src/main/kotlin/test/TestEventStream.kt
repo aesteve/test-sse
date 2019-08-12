@@ -12,10 +12,9 @@ object TestEventStream {
     fun main(args: Array<String>) {
         val vertx = Vertx.vertx()
         val opts = HttpClientOptions()
-            .setDefaultHost("stream.meetup.com")
         val client = vertx.createHttpClient(opts)
 
-        client.get("/2/rsvps") { resp ->
+        client.get("stream.meetup.com", "/2/rsvps") { resp ->
             println(resp.statusCode())
             resp.handler { buff ->
                 println(buff)
